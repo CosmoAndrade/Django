@@ -1,0 +1,11 @@
+python -m venv venv
+
+Cmd
+.\venv\Scripts\Activate
+cd venv
+
+cd Scripts 
+activate.bat
+
+No PowerShell como administrador
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned

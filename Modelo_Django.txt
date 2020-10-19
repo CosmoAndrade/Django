@@ -1,0 +1,65 @@
+1 - pip install django
+
+2 - django-admin startproject meusite .
+
+3 - python manage.py startapp blog
+
+4 - python manage.py runserver
+
+5 - do arquivo settings.py da pasta meusite --> 
+
+INSTALLED_APPS = [
+    
+    'blog.apps.BlogConfig',
+    'sobre.apps.SobreConfig',
+    
+]
+
+
+
+
+6 - do arquivo urls.py da pasta meusite --> 
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls')),
+   
+
+
+]
+
+
+7 - da pasta blog -> crie um arquivo urls.py --> 
+
+from django.urls import path
+from .import views
+
+urlpatterns = [
+    path('', views.index)
+]
+
+8 - da pasta blog -> abra o arqivio views.py -->
+
+from django.shortcuts import render
+
+
+def index(request):
+    return render (request,'blog/index.html')
+
+8 -  na raiz crie uma pagina , chamada paginas e um arquivo base.html -->
+{%block 'titulo'%} {%endblock%}
+{%block 'conteudo'%}{%endblock%}
+
+
+9 - na pasta blog -> crie uma pasta templates , dentro de templates uma pasta blog , um arquivo index.html -->
+
+{%extends 'base.html'%}
+
+{%block 'titulo'%} Aqui vai o titulo {%endblock%}
+
+{%block 'conteudo'%} 
+<h1>Eu sou o block</h1>
+{%endblock%}
+
+
