@@ -1,0 +1,100 @@
+1 - pip install djando
+2 - django-admin startproject mysite .
+3 - python manage.py startapp blog
+4 - python manage.py runserver
+
+5 - do arquivo settings.py da pasta mysite --> 
+
+INSTALLED_APPS = [
+    
+    'blog',
+    
+]
+
+6 - do arquivo settings.py 
+TEMPLATES = [
+     'DIRS': ['templates']
+]
+
+7 -  do arquivo urls.py da pasta mysite --> 
+
+urlpatterns = [
+
+   
+    path('', include('blog.urls')),
+   
+]
+
+8 -  da pasta blog -> abra o arqivio views.py -->
+   
+	def index(request):
+   		return render (request,'index.html')
+
+
+
+9 - criar um arquivo urls.py na pasta blog
+
+	from django.urls import path
+	from .views import index
+
+	urlpatterns = [
+   	    path('', index),
+]
+	
+
+10 - da pasta blog , criar uma pasta templates , criar um arquivo index.html
+
+
+11 - Da pasta blog do arquivo models.py 
+from django.db import models
+
+class Produto (models.Model):
+    nome = models.CharField('Nome', max_length=100)
+    preco = models.DecimalField('Preço', decimal_places=2 , max_digits=8)
+    estoque = models.IntegerField('Quantidade em Estoque')
+
+    def __str__(self):
+        return f'{self.nome}{self.estoque}'
+
+class Cliente(models.Model):
+    nome = models.CharField('Nome', max_length=100)
+    sobrenome = models.CharField('Sobrenome', max_length=100)
+    email = models.EmailField('E-mail', max_length=100)
+
+
+    def __str__(self):
+        return f'{self.nome}{self.sobrenome}{self.email}'
+
+12 - python manage.py makemigrations
+
+13 - python manage.py createsuperuser
+
+14 - Da pasta core , abrir o arquivo admin.py 
+
+from .models import Produto,Cliente
+
+class ProdutoAdmin(admin.ModelAdmin):
+    list_display = ('nome','preco','estoque')
+
+class ClienteAdmin (admin.ModelAdmin):
+    list_display = ('nome','sobrenome','email')
+
+
+admin.site.register(Produto,ProdutoAdmin)
+admin.site.register(Cliente , ClienteAdmin)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
