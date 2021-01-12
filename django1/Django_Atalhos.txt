@@ -1,0 +1,21 @@
+- Criar ambiente virtual
+python3 -m venv venv
+
+- Ativar ambiente virtual
+source venv/bin/activate
+
+- Criar projeto 
+django-admin startproject nome .
+
+- Criar app
+django-admin startapp nome
+
+- Executar django
+ python3 manage.py runserver
+
+-Migrações banco de dados
+ python3 manage.py makemigrations
+ python3 manage.py migrate
+
+- Configurar painel administrador
+python3 manage.py createsuperuser

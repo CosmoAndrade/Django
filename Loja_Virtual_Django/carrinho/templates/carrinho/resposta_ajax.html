@@ -1,0 +1,7 @@
+{% load humanize %}
+
+<div>
+   <div id="preco-total">{{ preco_total | intcomma }}</div>
+   <div id="quantidade">{{ quantidade | intcomma }}</div>
+   <div id="preco-carrinho">{{ preco_carrinho | floatformat:2 | intcomma }}</div>
+</div>
